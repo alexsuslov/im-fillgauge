@@ -6,6 +6,9 @@
   "description": "fillgauge widget for IoT Manager",
   "main": "index.js",
   "license": "MIT",
+  "dependencies": {
+    "angular-d3-liquid-fill-gauge": "https://github.com/alexsuslov/angular-d3-liquid-fill-gauge.git"
+  },
   "ignore": [
     "**/.*",
     "node_modules",
