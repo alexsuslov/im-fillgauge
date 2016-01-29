@@ -1,15 +1,11 @@
 {
-  "name": "toggle",
+  "name": "im-fillgauge",
   "authors": [
     "Alex Suslov <suslov@me.com>"
   ],
-  "description": "",
-  "main": "",
-  "moduleType": [
-    "amd"
-  ],
+  "description": "fillgauge widget for IoT Manager",
+  "main": "index.js",
   "license": "MIT",
-  "homepage": "",
   "ignore": [
     "**/.*",
     "node_modules",
