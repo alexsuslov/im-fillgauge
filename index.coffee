@@ -5,15 +5,12 @@ angular.module('widgets')
 
 .directive 'fillgauge',  ->
   # ### template
-  # <img style="float:left;padding-top:2px;" src="./img/led/led_{{color}}.png">
   template = '''
 <div ng-class="'{{cfg.class2}}'" style="{{cfg.style2}}">
   {{cfg.descr}}
 </div>
 <div ng-class="'{{cfg.class3}}'" style="{{cfg.style3}}">
-  <svg id="fillgauge{{item.id}}" width="100" height="100"
-    ng-init="FillGaugeUpdate(config.id, config.status)">
-  </svg>
+  <burble id='fg-{{cfg.id}}' value='{{percentage}}' ng-model='cfg' ></burble>
 </div>'''
   # console.log 'template', template
 
@@ -21,7 +18,8 @@ angular.module('widgets')
   link = (scope) ->
     # widget model
     widget = scope.ngModel
-    scope.config = scope.ngModel.data()
+    scope.cfg = scope.ngModel.data()
+    scope.percentage = scope.cfg.value.status if scope.cfg?.value?.status
 
   # ### controller
   controller = ($scope) ->
@@ -34,7 +32,6 @@ angular.module('widgets')
   directive =
     restrict: 'E'
     priority: 10
-    scope: ngModel: '='
     template: template
     controller: controller
     link: link

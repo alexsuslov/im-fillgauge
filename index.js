@@ -3,11 +3,14 @@
   'use strict';
   angular.module('widgets').directive('fillgauge', function() {
     var controller, directive, link, template;
-    template = '<div ng-class="\'{{cfg.class2}}\'" style="{{cfg.style2}}">\n  {{cfg.descr}}\n</div>\n<div ng-class="\'{{cfg.class3}}\'" style="{{cfg.style3}}">\n  <svg id="fillgauge{{item.id}}" width="100" height="100"\n    ng-init="FillGaugeUpdate(config.id, config.status)">\n  </svg>\n</div>';
+    template = '<div ng-class="\'{{cfg.class2}}\'" style="{{cfg.style2}}">\n  {{cfg.descr}}\n</div>\n<div ng-class="\'{{cfg.class3}}\'" style="{{cfg.style3}}">\n  <burble id=\'fg-{{cfg.id}}\' value=\'{{percentage}}\' ng-model=\'cfg\' ></burble>\n</div>';
     link = function(scope) {
-      var widget;
+      var ref, ref1, widget;
       widget = scope.ngModel;
-      return scope.config = scope.ngModel.data();
+      scope.cfg = scope.ngModel.data();
+      if ((ref = scope.cfg) != null ? (ref1 = ref.value) != null ? ref1.status : void 0 : void 0) {
+        return scope.percentage = scope.cfg.value.status;
+      }
     };
     controller = function($scope) {
       var widget;
@@ -20,9 +23,6 @@
     return directive = {
       restrict: 'E',
       priority: 10,
-      scope: {
-        ngModel: '='
-      },
       template: template,
       controller: controller,
       link: link
